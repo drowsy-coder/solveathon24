@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "902801817298",
+    "project_id": "hostel-admin-3d53c",
+    "storage_bucket": "hostel-admin-3d53c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902801817298:android:aecc0dc5ddaba472bdb70b",
+        "android_client_info": {
+          "package_name": "com.pandas.solveathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902801817298-vqvcigheheffdgnsm9cbbniog8jh0drr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo8WxU46wEGoTSQtB5h4MydTIGYm4-C8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902801817298-vqvcigheheffdgnsm9cbbniog8jh0drr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
