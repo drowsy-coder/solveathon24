@@ -55,7 +55,6 @@ class _FaceState extends State<Face> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Attendance System 🚨"),
-        backgroundColor: Colors.blue,
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -112,11 +111,11 @@ class CardButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Colors.green, Colors.red],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            // gradient: const LinearGradient(
+            //   colors: [Colors.green, Colors.red],
+            //   begin: Alignment.topLeft,
+            //   end: Alignment.bottomRight,
+            // ),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Center(
