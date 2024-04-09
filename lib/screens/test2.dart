@@ -122,44 +122,44 @@ class _Test2State extends State<Test2> {
                 ),
                 submitted == true
                     ? Card(
-                        color: Colors.grey[300],
-                        child: Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                "Receive Date",
-                                style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold),
+                        margin: EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        color: Color(0xFF0C44A3),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(15, 15, 15, 5),
+                              height: 200,
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Receive Date",
+                                    style: TextStyle(
+                                        fontSize: 30, color: Colors.white),
+                                  ),
+                                  Text("25/09/2021",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                  Text("Cloth Count",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                  ...clothCounts.entries.map((entry) {
+                                    return Text('${entry.key}: ${entry.value}',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white));
+                                  }),
+                                ],
                               ),
-                              Text("25/09/2021"),
-                              Text(
-                                "Cloth Count",
-                              ),
-                              ...clothCounts.entries.map((entry) {
-                                return Text('${entry.key}: ${entry.value}');
-                              }).toList(),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       )
                     : Container(),
-                // const Text(
-                //   "Wash Date",
-                //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                // ),
-                // const Text("24/09/2021"),
-                // Expanded(
-                //   child: Container(),
-                // ),
-                // const Text(
-                //   "Receive Date",
-                //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                // ),
-                // const Text("25/09/2021"),
-                // Expanded(
-                //   child: Container(),
-                // ),
               ],
             ),
           ),
