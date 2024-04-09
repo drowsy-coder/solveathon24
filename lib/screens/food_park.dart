@@ -63,9 +63,10 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text('Food Park'),
+          backgroundColor: Colors.transparent,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.logout),
@@ -102,7 +103,11 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
                   ],
                 ),
                 child: DropdownButtonFormField<String>(
+                  dropdownColor: Color(0xff282828),
                   decoration: InputDecoration(
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent),
+                    ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey.shade900),
                     ),
@@ -136,7 +141,7 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
                 itemBuilder: (context, index) {
                   final item = filteredItems[index];
                   return Card(
-                    color: theme.buttonTheme.colorScheme!.surface,
+                    color: Color(0xff282828),
                     margin: const EdgeInsets.all(8),
                     elevation: 4,
                     child: IntrinsicHeight(
@@ -216,7 +221,7 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
                                 Text('${selectedQuantities[item.id] ?? 0}'),
                                 IconButton(
                                   icon: const Icon(Icons.add,
-                                      color: Colors.green),
+                                      color: Color(0xffa688fa)),
                                   onPressed: () {
                                     setState(() {
                                       selectedQuantities.update(
@@ -239,6 +244,7 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: submitOrder,
+          backgroundColor: Color(0xffa688fa),
           child: const Icon(Icons.check),
         ),
       ),

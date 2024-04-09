@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:solveathon/login/login_method.dart';
 import 'package:solveathon/login/login_ui.dart';
+import 'package:solveathon/screens/health_screen.dart';
 import 'package:solveathon/screens/pdf_chat.dart';
 import 'package:solveathon/widgets/drawer/header.dart';
 
@@ -69,11 +70,11 @@ class _UserProfileDrawerState extends State<UserProfileDrawer> {
                       const CustomDrawerHeader(),
                       _buildOptionTile(
                           Icons.health_and_safety, 'Health Centre Record', () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const QRCodeScreen()),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HealthCentreScreen()),
+                        );
                       }),
                       _buildOptionTile(
                           Icons.chat_bubble_outline, 'Regulations ChatBOT',
