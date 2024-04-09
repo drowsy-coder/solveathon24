@@ -34,7 +34,7 @@ class LoginPageLogic {
             regExp.firstMatch(user.displayName ?? '')?.group(0);
         String userName = user.displayName ?? 'N/A';
         if (regNum != null) {
-          userName = userName.replaceFirst(' - $regNum', '').trim();
+          userName = userName.replaceFirst(' $regNum', '').trim();
         }
 
         await FirebaseFirestore.instance
