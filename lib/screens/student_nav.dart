@@ -19,7 +19,7 @@ class _StudentNavState extends State<StudentNav> {
   static final List<Widget> _widgetOptions = [
     HomeScreen(),
     const ClothCounterPage(),
-    ChatBotScreen(),
+    const ComplaintFormScreen(),
     const FoodOrderingScreen()
   ];
 

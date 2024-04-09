@@ -2,6 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:solveathon/login/login_method.dart';
+import 'package:solveathon/login/login_ui.dart';
+import 'package:solveathon/screens/pdf_chat.dart';
+import 'package:solveathon/widgets/drawer/header.dart';
 
 class UserProfileDrawer extends StatefulWidget {
   const UserProfileDrawer({super.key});
@@ -123,45 +127,46 @@ class _UserProfileDrawerState extends State<UserProfileDrawer> {
               return const Center(child: CircularProgressIndicator());
             }
 
-            final userData = snapshot.data;
             return Column(
               children: [
                 Expanded(
                   child: ListView(
                     padding: EdgeInsets.zero,
                     children: [
-                      // CustomDrawerHeader(userData: userData),
-                      _buildOptionTile(Icons.qr_code, 'Display QR Code', () {
+                      const CustomDrawerHeader(),
+                      _buildOptionTile(
+                          Icons.health_and_safety, 'Health Centre Record', () {
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(
                         //       builder: (context) => const QRCodeScreen()),
                         // );
                       }),
-                      _buildOptionTile(Icons.map, 'Show VIT Campus Map',
+                      _buildOptionTile(
+                          Icons.chat_bubble_outline, 'Regulations ChatBOT',
                           () async {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const VITMap()),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ChatBotScreen()),
+                        );
                       }),
-                      _buildOptionTile(Icons.leaderboard, 'Leaderboard',
-                          () async {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const LeaderboardScreen()),
-                        // );
-                      }),
+                      // _buildOptionTile(Icons.leaderboard, 'Leaderboard',
+                      //     () async {
+                      //   // Navigator.push(
+                      //   //   context,
+                      //   //   MaterialPageRoute(
+                      //   //       builder: (context) => const LeaderboardScreen()),
+                      //   // );
+                      // }),
                       _buildOptionTile(Icons.exit_to_app, 'Logout', () async {
                         await FirebaseAuth.instance.signOut();
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) =>
-                        //           LoginPageUI(logic: LoginPageLogic())),
-                        // );
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  LoginPageUI(logic: LoginPageLogic())),
+                        );
                       }),
                     ],
                   ),

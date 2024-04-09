@@ -47,16 +47,8 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        toolbarHeight: 70,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-        ),
         elevation: 10,
-        title: const Text("ChatPDF-Powered Chatbot"),
+        title: const Text("VIT Regulations BOT"),
       ),
       body: Column(
         children: <Widget>[
