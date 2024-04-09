@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "902801817298-1ua9dgv4rcigbscg4b18b84gakf5c95o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pandas.solveathon",
+            "certificate_hash": "a7fbfd696da1f04a057b8207cfefba7a89baf1cb"
+          }
+        },
+        {
           "client_id": "902801817298-vqvcigheheffdgnsm9cbbniog8jh0drr.apps.googleusercontent.com",
           "client_type": 3
         }
