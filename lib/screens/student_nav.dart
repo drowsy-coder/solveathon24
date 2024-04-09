@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:solveathon/screens/dhobi.dart';
 import 'package:solveathon/screens/test.dart';
-import 'package:solveathon/screens/test2.dart';
 import 'package:solveathon/screens/test3.dart';
-import 'package:solveathon/screens/test4.dart';
+import 'package:solveathon/screens/food_park.dart';
 
 class StudentNav extends StatefulWidget {
   const StudentNav({super.key});
@@ -16,9 +16,9 @@ class _StudentNavState extends State<StudentNav> {
 
   static final List<Widget> _widgetOptions = [
     const Face(),
-    const Test2(),
+    const ClothCounterPage(),
     const Test3(),
-    const Test4()
+     FoodOrderingScreen()
   ];
 
   void _onItemTapped(int index) {

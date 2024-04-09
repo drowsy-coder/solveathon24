@@ -46,6 +46,7 @@ dependencies:
   geolocator: ^11.0.0
   flutter_face_api: ^6.1.1
   image_picker: ^1.0.7
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

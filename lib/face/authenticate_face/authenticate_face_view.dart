@@ -56,6 +56,10 @@ class _AuthenticateFaceViewState extends State<AuthenticateFaceView> {
     try {
       final Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
+      // Print the current latitude and longitude
+      print("Current Latitude: ${position.latitude}");
+      print("Current Longitude: ${position.longitude}");
+
       final double distance = Geolocator.distanceBetween(position.latitude,
           position.longitude, targetLatitude, targetLongitude);
 
