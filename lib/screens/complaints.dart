@@ -63,6 +63,9 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
     //     .collection('Complaints_saumya')
     //     .doc('22BCE1293${_CategoryController.text.trim()}');
     // final DocumentSnapshot doc = await ref.get();
+    int year = DateTime.now().year;
+    int month = DateTime.now().month;
+    int day = DateTime.now().day;
 
     final DocumentReference ref =
         db.collection('Complaints').doc('22BCE1293_$category');
@@ -72,6 +75,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
       "Category": category,
       "description": description,
       "Status": 1,
+      "Date": "$year-$month-$day",
     };
     await ref.set(data);
 
