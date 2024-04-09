@@ -9,8 +9,7 @@ import 'package:solveathon/theme.dart';
 
 class CameraView extends StatefulWidget {
   const CameraView(
-      {Key? key, required this.onImage, required this.onInputImage})
-      : super(key: key);
+      {super.key, required this.onImage, required this.onInputImage});
 
   final Function(Uint8List image) onImage;
   final Function(InputImage inputImage) onInputImage;

@@ -11,10 +11,10 @@ class EnterDetailsView extends StatefulWidget {
   final FaceFeatures faceFeatures;
 
   const EnterDetailsView({
-    Key? key,
+    super.key,
     required this.image,
     required this.faceFeatures,
-  }) : super(key: key);
+  });
 
   @override
   State<EnterDetailsView> createState() => _EnterDetailsViewState();

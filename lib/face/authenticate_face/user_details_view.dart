@@ -5,7 +5,7 @@ import 'package:solveathon/theme.dart';
 
 class UserDetailsView extends StatelessWidget {
   final UserModel user;
-  const UserDetailsView({Key? key, required this.user}) : super(key: key);
+  const UserDetailsView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

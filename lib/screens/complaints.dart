@@ -1,10 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:flutter/widgets.dart';
 
 class ComplaintFormScreen extends StatelessWidget {
   const ComplaintFormScreen({super.key});
@@ -27,7 +25,7 @@ class ComplaintFormScreen extends StatelessWidget {
             title: const Text('Add Complaint'),
             elevation: 0,
           ),
-          body: ComplaintsForm(),
+          body: const ComplaintsForm(),
         ),
       ),
     );
@@ -103,7 +101,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
     return Column(
       children: [
         const Padding(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.all(8),
           child: Text(
             'Submit a New Complaint',
             style: TextStyle(
@@ -155,7 +153,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
           child: Container(),
         ),
         Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: ElevatedButton(
             onPressed: submitComplaint,
             style: ElevatedButton.styleFrom(
@@ -167,7 +165,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
               //   borderRadius: BorderRadius.circular(12),
               // ),
             ),
-            child: Text(
+            child: const Text(
               'Submit Complaint',
               style: TextStyle(
                 fontSize: 20,

@@ -97,7 +97,7 @@ class CardButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
 
-  CardButton({required this.text, required this.onTap});
+  const CardButton({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

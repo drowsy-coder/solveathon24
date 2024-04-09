@@ -16,78 +16,11 @@ class UserProfileDrawer extends StatefulWidget {
 
 class _UserProfileDrawerState extends State<UserProfileDrawer> {
   late Future<Map<String, dynamic>?> userDataFuture;
-  int _tapCounter = 0;
-  DateTime? _firstTapTime;
 
   @override
   void initState() {
     super.initState();
     userDataFuture = fetchUserData();
-  }
-
-  void _onDscVitChennaiTapped() {
-    final now = DateTime.now();
-    if (_firstTapTime == null || now.difference(_firstTapTime!).inSeconds > 5) {
-      _firstTapTime = now;
-      _tapCounter = 1;
-    } else {
-      _tapCounter++;
-      if (_tapCounter >= 5) {
-        _showEasterEggAlert();
-        _tapCounter = 0;
-        _firstTapTime = null;
-      }
-    }
-  }
-
-  void _showEasterEggAlert() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF333333),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        title: const Text(
-          "drowsycoder",
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-          textAlign: TextAlign.center,
-        ),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              ClipOval(
-                child: Image.asset(
-                  'assets/111220288-3.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                "Thanks for discovering this Easter Egg! Hope you enjoy using the app.",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey[200]),
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          Center(
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Awesome!',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<Map<String, dynamic>?> fetchUserData() async {

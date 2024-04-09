@@ -9,12 +9,12 @@ class CustomTextField extends StatelessWidget {
   final String validatorText;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.formFieldKey,
     required this.controller,
     required this.hintText,
     required this.validatorText,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
