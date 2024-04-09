@@ -15,7 +15,7 @@ class _StudentNavState extends State<StudentNav> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = [
-    const Test(),
+    const Face(),
     const Test2(),
     const Test3(),
     const Test4()
