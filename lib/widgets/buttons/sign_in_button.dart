@@ -28,7 +28,7 @@ class CustomSignInButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/google-gif-spin-2.gif',
+              'assets/google-gif-spin.gif',
               height: 30.0,
               width: 30.0,
             ),

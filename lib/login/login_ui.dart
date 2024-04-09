@@ -27,23 +27,21 @@ class LoginPageUI extends StatelessWidget {
 
     final List<CarouselItem> carouselItems = [
       CarouselItem(
-        imagePath:
-            'assets/549-5496904_updates-icon-updates-icon-hd-png-download Background Removed.png',
-        title: 'Get Realtime Hackathon Updates',
-        description:
-            'Stay informed with the latest updates from the hackathon, directly on your mobile device.',
+        imagePath: 'assets/laundry_icon.png',
+        title: 'Chhota Dhobi',
+        description: 'Manage your laundry schedule with ease and convenience.',
       ),
       CarouselItem(
-        imagePath: 'assets/Vellore_Institute_of_Technology_seal_2017.svg.png',
-        title: 'Discover VIT Chennai',
+        imagePath: 'assets/complaint_icon.png',
+        title: 'Hostel Complaint',
         description:
-            'Explore the vibrant campus of VIT Chennai and discover what makes it special.',
+            'Raise any maintenance issues quickly and get them resolved.',
       ),
       CarouselItem(
-        imagePath: 'assets/3150115.png',
-        title: 'See Leaderboard of Winners',
+        imagePath: 'assets/mess_icon.png',
+        title: 'Mess Management',
         description:
-            'Check out the leaderboard to see the winners of the hackathon.',
+            'Order food from the mess and manage your meal plans effortlessly.',
       ),
     ];
 
@@ -65,17 +63,17 @@ class LoginPageUI extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 Image.asset(
-                  'assets/devshouse-black-logo.png',
-                  width: 250,
+                  'assets/vit_logo.png',
+                  width: 330,
                   height: 130,
                 ),
-                Image.asset(
-                  'assets/DEVSHOUSE.png',
-                  width: 250,
-                  height: 130,
-                ),
+                // Image.asset(
+                //   'assets/DEVSHOUSE.png',
+                //   width: 250,
+                //   height: 130,
+                // ),
                 const SizedBox(height: 40),
                 CarouselSlider(
                   options: CarouselOptions(
