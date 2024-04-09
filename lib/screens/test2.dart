@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solveathon/cloth/clothitem.dart';
 
 class Test2 extends StatefulWidget {
   const Test2({super.key});
@@ -8,91 +9,159 @@ class Test2 extends StatefulWidget {
 }
 
 class _Test2State extends State<Test2> {
+  final Map<String, int> clothCounts = {};
   final TextEditingController clothCountController = TextEditingController();
   bool submitted = false;
   String? count;
+
+  final List<ClothItem> clothItems = [
+    ClothItem(name: 'T-Shirt'),
+    ClothItem(name: 'Shirt'),
+    ClothItem(name: 'Jeans'),
+    ClothItem(name: 'Shorts'),
+    // Add more cloth items here
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color(0xff1a222c),
         appBar: AppBar(
-          title: const Text('Today\'s Wash (or next wash)'),
+          backgroundColor: Color(0xff24303f),
+          title: const Text('Today\'s Wash (or next wash)',
+              style: TextStyle(color: Colors.white)),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              Card(
-                color: Colors.grey[300],
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      const Text(
-                        "Wash Date",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      const Text("24/09/2021"),
-                      TextField(
-                        controller: clothCountController,
-                        decoration: const InputDecoration(
-                          label: Text("Enter Cloth Count:"),
-                        ),
-                        enabled: !submitted,
-                        keyboardType: TextInputType.number,
-                      ),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle submit logic here
-                          print('Cloth count: ${clothCountController.text}');
-                          setState(() {
-                            submitted = true;
-                            count = clothCountController.text;
-                          });
-                        },
-                        child: const Text('Submit'),
-                      ),
-                    ],
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Center(
+            child: Column(
+              children: [
+                Card(
+                  margin: EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
-              ),
-              submitted == true
-                  ? Card(
-                      color: Colors.grey[300],
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                  color: Color(0xFF0C44A3),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(15, 15, 15, 5),
                         child: Column(
-                          children: [
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
                             const Text(
-                              "Receive Date",
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
+                              "Wash Date",
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white),
                             ),
-                            const Text("25/09/2021"),
-                            Text(count!),
+                            Container(height: 10),
+                            Text(
+                              "24/09/2021",
+                              style: TextStyle(
+                                  fontSize: 15, color: Colors.grey[200]),
+                            ),
+                            Container(
+                              height: 200,
+                              child: ListView.builder(
+                                itemCount: clothItems.length,
+                                itemBuilder: (context, index) {
+                                  final clothItem = clothItems[index];
+                                  return Container(
+                                    // color: Color.fromARGB(255, 3, 65, 115),
+                                    child: ClothItemWidget(
+                                      clothItem: clothItem,
+                                      onIncrement: () {
+                                        setState(() {
+                                          clothItem.count++;
+                                        });
+                                      },
+                                      onDecrement: () {
+                                        setState(() {
+                                          if (clothItem.count > 0) {
+                                            clothItem.count--;
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
                           ],
                         ),
                       ),
-                    )
-                  : Container(),
-              // const Text(
-              //   "Wash Date",
-              //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              // ),
-              // const Text("24/09/2021"),
-              // Expanded(
-              //   child: Container(),
-              // ),
-              // const Text(
-              //   "Receive Date",
-              //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              // ),
-              // const Text("25/09/2021"),
-              // Expanded(
-              //   child: Container(),
-              // ),
-            ],
+                      submitted == false
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: Colors.transparent),
+                                  child: const Text(
+                                    "Submit",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onPressed: () {
+                                    for (final clothItem in clothItems) {
+                                      clothCounts[clothItem.name] =
+                                          clothItem.count;
+                                    }
+                                    //!Send to backend here
+                                    setState(() {
+                                      submitted = true;
+                                      count = clothCountController.text;
+                                    });
+                                  },
+                                ),
+                              ],
+                            )
+                          : Container(),
+                    ],
+                  ),
+                ),
+                submitted == true
+                    ? Card(
+                        color: Colors.grey[300],
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Receive Date",
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
+                              ),
+                              Text("25/09/2021"),
+                              Text(
+                                "Cloth Count",
+                              ),
+                              ...clothCounts.entries.map((entry) {
+                                return Text('${entry.key}: ${entry.value}');
+                              }).toList(),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Container(),
+                // const Text(
+                //   "Wash Date",
+                //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                // ),
+                // const Text("24/09/2021"),
+                // Expanded(
+                //   child: Container(),
+                // ),
+                // const Text(
+                //   "Receive Date",
+                //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                // ),
+                // const Text("25/09/2021"),
+                // Expanded(
+                //   child: Container(),
+                // ),
+              ],
+            ),
           ),
         ),
       ),
