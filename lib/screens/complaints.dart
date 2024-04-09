@@ -9,24 +9,27 @@ class ComplaintFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black, Colors.grey[900]!],
-          ),
-        ),
-        child: Scaffold(
+    return Container(
+      // decoration: BoxDecoration(
+      //   gradient: LinearGradient(
+      //     begin: Alignment.topCenter,
+      //     end: Alignment.bottomCenter,
+      //     colors: [Colors.black, Colors.grey[900]!],
+      //   ),
+      // ),
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        // backgroundColor: Colors.grey[900],
+        appBar: AppBar(
+          title: Center(
+              child: const Text(
+            'Add Complaint',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          )),
+          elevation: 0,
           backgroundColor: Colors.transparent,
-          // backgroundColor: Colors.grey[900],
-          appBar: AppBar(
-            title: const Text('Add Complaint'),
-            elevation: 0,
-          ),
-          body: const ComplaintsForm(),
         ),
+        body: const ComplaintsForm(),
       ),
     );
   }
@@ -100,18 +103,20 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
     //     ),
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.all(8),
-          child: Text(
-            'Submit a New Complaint',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        // const Padding(
+        //   padding: EdgeInsets.all(8),
+        //   child: Text(
+        //     'Submit a New Complaint',
+        //     style: TextStyle(
+        //       fontSize: 24,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
         const SizedBox(height: 12),
         Card(
+          color: Color(0xff282828),
+          margin: EdgeInsets.all(14),
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -155,10 +160,13 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
         Padding(
           padding: const EdgeInsets.all(16),
           child: ElevatedButton(
-            onPressed: submitComplaint,
+            onPressed: (){
+              submitComplaint();
+              FocusScope.of(context).unfocus();
+            },
             style: ElevatedButton.styleFrom(
-              backgroundColor: //Color.fromARGB(255, 56, 210, 230),
-                  Theme.of(context).primaryColor,
+              backgroundColor: Color(0xffa688fa),
+              // Theme.of(context).primaryColor,
               minimumSize: const Size.fromHeight(50),
               // padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               // shape: RoundedRectangleBorder(
