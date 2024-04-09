@@ -52,180 +52,193 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
         : foodItems.where((item) => item.category == filter).toList();
     ThemeData theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Food Park'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => LoginPageUI(logic: LoginPageLogic())),
-              );
-            },
-          ),
-        ],
-        backgroundColor: Colors.black87, // Dark themed AppBar
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.black, Colors.grey[900]!],
+        ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade900,
-                borderRadius: BorderRadius.circular(25.0),
-                border: Border.all(color: Colors.grey.shade700, width: 1),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black54,
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade900),
-                  ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Food Park'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          LoginPageUI(logic: LoginPageLogic())),
+                );
+              },
+            ),
+          ],
+// Dark themed AppBar
+        ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade900,
+                  borderRadius: BorderRadius.circular(25.0),
+                  border: Border.all(color: Colors.grey.shade700, width: 1),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black54,
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
                 ),
-                value: filter,
-                icon: Icon(Icons.arrow_drop_down,
-                    color: theme.primaryColorLight), // Lighter icon color
-                iconSize: 24,
-                elevation: 16,
-                style: TextStyle(
-                    color: theme
-                        .primaryColorLight), // Lighter text color for readability
-                onChanged: (String? newValue) {
-                  setState(() {
-                    filter = newValue!;
-                  });
-                },
-                items: <String>['All', 'Gravy', 'Dessert', 'Chinese']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade900),
+                    ),
+                  ),
+                  value: filter,
+                  icon: Icon(Icons.arrow_drop_down,
+                      color: theme.primaryColorLight), // Lighter icon color
+                  iconSize: 24,
+                  elevation: 16,
+                  style: TextStyle(
+                      color: theme
+                          .primaryColorLight), // Lighter text color for readability
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      filter = newValue!;
+                    });
+                  },
+                  items: <String>['All', 'Gravy', 'Dessert', 'Chinese']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filteredItems.length,
-              itemBuilder: (context, index) {
-                final item = filteredItems[index];
-                return Card(
-                  margin: const EdgeInsets.all(8),
-                  elevation: 4,
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            margin: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                  color: Colors.grey.shade300, width: 1),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.network(
-                                item.imageUrl,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height: 120,
+            Expanded(
+              child: ListView.builder(
+                itemCount: filteredItems.length,
+                itemBuilder: (context, index) {
+                  final item = filteredItems[index];
+                  return Card(
+                    color: theme.buttonTheme.colorScheme!.surface,
+                    margin: const EdgeInsets.all(8),
+                    elevation: 4,
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: Colors.grey.shade300, width: 1),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  item.imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: 120,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          Expanded(
+                            flex: 3,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    item.name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    item.subtitle,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                  Text(
+                                    '₹${item.price}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.green[700],
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  item.name,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                IconButton(
+                                  icon: const Icon(Icons.remove,
+                                      color: Colors.red),
+                                  onPressed: () {
+                                    setState(() {
+                                      selectedQuantities.update(item.id,
+                                          (value) => value > 0 ? value - 1 : 0,
+                                          ifAbsent: () => 0);
+                                    });
+                                  },
                                 ),
-                                Text(
-                                  item.subtitle,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                Text(
-                                  '₹${item.price}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.green[700],
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Text('${selectedQuantities[item.id] ?? 0}'),
+                                IconButton(
+                                  icon: const Icon(Icons.add,
+                                      color: Colors.green),
+                                  onPressed: () {
+                                    setState(() {
+                                      selectedQuantities.update(
+                                          item.id, (value) => value + 1,
+                                          ifAbsent: () => 1);
+                                    });
+                                  },
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              IconButton(
-                                icon:
-                                    const Icon(Icons.remove, color: Colors.red),
-                                onPressed: () {
-                                  setState(() {
-                                    selectedQuantities.update(item.id,
-                                        (value) => value > 0 ? value - 1 : 0,
-                                        ifAbsent: () => 0);
-                                  });
-                                },
-                              ),
-                              Text('${selectedQuantities[item.id] ?? 0}'),
-                              IconButton(
-                                icon:
-                                    const Icon(Icons.add, color: Colors.green),
-                                onPressed: () {
-                                  setState(() {
-                                    selectedQuantities.update(
-                                        item.id, (value) => value + 1,
-                                        ifAbsent: () => 1);
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: submitOrder,
-        child: const Icon(Icons.check),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: submitOrder,
+          child: const Icon(Icons.check),
+        ),
       ),
     );
   }
