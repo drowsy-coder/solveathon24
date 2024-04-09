@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solveathon/screens/dhobi.dart';
 import 'package:solveathon/screens/test.dart';
-import 'package:solveathon/screens/test3.dart';
+import 'package:solveathon/screens/complaints.dart';
 import 'package:solveathon/screens/food_park.dart';
 
 class StudentNav extends StatefulWidget {
@@ -17,8 +17,8 @@ class _StudentNavState extends State<StudentNav> {
   static final List<Widget> _widgetOptions = [
     const Face(),
     const ClothCounterPage(),
-    const Test3(),
-     FoodOrderingScreen()
+    const ComplaintFormScreen(),
+    const FoodOrderingScreen()
   ];
 
   void _onItemTapped(int index) {

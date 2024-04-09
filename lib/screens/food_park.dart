@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:solveathon/login/login_method.dart';
+import 'package:solveathon/login/login_ui.dart';
 
 class FoodOrderingScreen extends StatefulWidget {
   const FoodOrderingScreen({super.key});
@@ -53,6 +55,19 @@ class _FoodOrderingScreenState extends State<FoodOrderingScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Food Park'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => LoginPageUI(logic: LoginPageLogic())),
+              );
+            },
+          ),
+        ],
         backgroundColor: Colors.black87, // Dark themed AppBar
       ),
       body: Column(

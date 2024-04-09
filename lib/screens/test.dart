@@ -112,7 +112,7 @@ class CardButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [Colors.green, Colors.red],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -122,7 +122,7 @@ class CardButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
