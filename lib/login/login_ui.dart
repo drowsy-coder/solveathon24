@@ -171,6 +171,7 @@ class LoginPageUI extends StatelessWidget {
                 CustomSignInButton(
                   onPressed: () async {
                     await logic.signInWithGoogle(context);
+                    await logic.checkLoggedIn(context);
                   },
                 )
               ],

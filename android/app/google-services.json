@@ -22,6 +22,22 @@
           }
         },
         {
+          "client_id": "902801817298-imo7h4phhv5pu2lqi92d38va27v425ve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pandas.solveathon",
+            "certificate_hash": "a18d5631a2c08b7d98f8032a72207e015f719fb8"
+          }
+        },
+        {
+          "client_id": "902801817298-o6hnrt088e9kktttgtsufuis3slnu3f9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pandas.solveathon",
+            "certificate_hash": "c614ecf19b5e1895fb519bcef4d970c58422cf6a"
+          }
+        },
+        {
           "client_id": "902801817298-vqvcigheheffdgnsm9cbbniog8jh0drr.apps.googleusercontent.com",
           "client_type": 3
         }

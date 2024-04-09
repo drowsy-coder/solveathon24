@@ -28,8 +28,8 @@ class _UserProfileDrawerState extends State<UserProfileDrawer> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null && user.email != null) {
       final querySnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isEqualTo: user.email)
+          .collection('userData')
+          .where('useremail', isEqualTo: user.email)
           .limit(1)
           .get();
 
