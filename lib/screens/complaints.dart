@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:flutter/widgets.dart';
 
 class ComplaintFormScreen extends StatelessWidget {
   const ComplaintFormScreen({super.key});
@@ -10,17 +12,22 @@ class ComplaintFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey[900],
-        appBar: AppBar(
-          title: const Text('Add Complaint'),
-          elevation: 0,
-        ),
-        body: const SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: ComplaintsForm(),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.black, Colors.grey[900]!],
           ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          // backgroundColor: Colors.grey[900],
+          appBar: AppBar(
+            title: const Text('Add Complaint'),
+            elevation: 0,
+          ),
+          body: ComplaintsForm(),
         ),
       ),
     );
@@ -57,11 +64,6 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
       return;
     }
 
-// Create a reference to a document
-    // final DocumentReference ref = db
-    //     .collection('Complaints_saumya')
-    //     .doc('22BCE1293${_CategoryController.text.trim()}');
-    // final DocumentSnapshot doc = await ref.get();
     int year = DateTime.now().year;
     int month = DateTime.now().month;
     int day = DateTime.now().day;
@@ -85,62 +87,98 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
 
   @override
   Widget build(BuildContext context) {
+    // return Stack(
+    //   children: [
+    //     Positioned.fill(
+    //       child: Container(
+    //         decoration: BoxDecoration(
+    //           gradient: LinearGradient(
+    //             begin: Alignment.topCenter,
+    //             end: Alignment.bottomCenter,
+    //             colors: [Colors.black, Colors.grey[900]!],
+    //           ),
+    //         ),
+    //       ),
+    //     ),
     return Column(
       children: [
-        Text(
-          'Submit a New Complaint',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[300],
-          ),
-        ),
-        const SizedBox(height: 20),
-        DropDownTextField(
-          controller: _categoryController,
-          clearOption: false,
-          textFieldDecoration: InputDecoration(
-            labelText: 'Category',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            prefixIcon: const Icon(Icons.category),
-          ),
-          dropDownList: const [
-            DropDownValueModel(name: 'AC', value: 'AC'),
-            DropDownValueModel(name: 'Mosquito', value: 'Mosquito'),
-            DropDownValueModel(name: 'Wifi', value: 'Wifi'),
-            DropDownValueModel(name: 'Food', value: 'Food'),
-          ],
-        ),
-        const SizedBox(height: 20),
-        TextFormField(
-          controller: _descriptionController,
-          decoration: InputDecoration(
-            labelText: 'Description',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            prefixIcon: const Icon(Icons.description),
-          ),
-          maxLines: 3,
-        ),
-        const SizedBox(height: 30),
-        ElevatedButton(
-          onPressed: submitComplaint,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue[300],
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+        const Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            'Submit a New Complaint',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          child: const Text(
-            'Submit Complaint',
-            style: TextStyle(fontSize: 18, color: Colors.black),
+        ),
+        const SizedBox(height: 12),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                DropDownTextField(
+                  controller: _categoryController,
+                  clearOption: false,
+                  textFieldDecoration: InputDecoration(
+                    labelText: 'Category',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(Icons.category),
+                  ),
+                  dropDownList: const [
+                    DropDownValueModel(name: 'AC', value: 'AC'),
+                    DropDownValueModel(name: 'Mosquito', value: 'Mosquito'),
+                    DropDownValueModel(name: 'Wifi', value: 'Wifi'),
+                    DropDownValueModel(name: 'Food', value: 'Food'),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _descriptionController,
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(Icons.description),
+                  ),
+                  maxLines: 3,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(),
+        ),
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: ElevatedButton(
+            onPressed: submitComplaint,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: //Color.fromARGB(255, 56, 210, 230),
+                  Theme.of(context).primaryColor,
+              minimumSize: const Size.fromHeight(50),
+              // padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.circular(12),
+              // ),
+            ),
+            child: Text(
+              'Submit Complaint',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       ],
     );
+    // ],
+    // );
   }
 }

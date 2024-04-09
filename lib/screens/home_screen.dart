@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'V-Reside',
+                              'H-TOP',
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
