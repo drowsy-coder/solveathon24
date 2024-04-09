@@ -20,7 +20,6 @@ import 'package:solveathon/face/common/views/custom_button.dart';
 import 'package:solveathon/models/user_model.dart';
 import 'package:solveathon/theme.dart';
 
-
 class AuthenticateFaceView extends StatefulWidget {
   const AuthenticateFaceView({Key? key}) : super(key: key);
 
@@ -50,43 +49,33 @@ class _AuthenticateFaceViewState extends State<AuthenticateFaceView> {
   int trialNumber = 1;
 
   Future<void> checkLocationAndMarkAttendance() async {
-    final double targetLatitude = 12.8396339;
-    final double targetLongitude = 80.1551999;
+    const double targetLatitude = 21.175025003769775;
+    const double targetLongitude = 81.6532263999334;
+    const double threshold = 50.0; // Threshold in meters
 
-    final Geolocator geolocator = Geolocator();
+    try {
+      final Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      final double distance = Geolocator.distanceBetween(position.latitude,
+          position.longitude, targetLatitude, targetLongitude);
 
-    final Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-
-    final double distance = Geolocator.distanceBetween(
-      position.latitude,
-      position.longitude,
-      targetLatitude,
-      targetLongitude,
-    );
-
-    final double threshold = 50.0; // You can adjust this threshold as needed.
-
-    if (distance <= threshold) {
-      // User is within the specified range, mark them present in the "attendance" collection.
-      final String userId = FirebaseAuth.instance.currentUser!.uid;
-
-      if (userId != null) {
-        final DateTime now = DateTime.now();
-
-        // Create a document in the "attendance" collection with the user's UID and the current date and time.
-        await FirebaseFirestore.instance.collection('attendance').add({
-          'uid': userId,
-          'timestamp': now,
-        });
-
-        // You can also show a success message to the user.
-        CustomSnackBar.successSnackBar("Attendance marked successfully!");
+      if (distance <= threshold) {
+        final String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
+        if (userId.isNotEmpty) {
+          final DateTime now = DateTime.now();
+          await FirebaseFirestore.instance.collection('attendance').add({
+            'uid': userId,
+            'timestamp': now,
+          });
+          CustomSnackBar.successSnackBar("Attendance marked successfully!");
+        }
+      } else {
+        CustomSnackBar.errorSnackBar(
+            "You are not within the attendance range.");
       }
-    } else {
-      // User is outside the specified range, you can show an error message.
-      CustomSnackBar.errorSnackBar("You are not within the attendance range.");
+    } catch (e) {
+      CustomSnackBar.errorSnackBar("Failed to get location. Please try again.");
+      print(e); // Log the error or handle it as per your needs.
     }
   }
 

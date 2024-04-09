@@ -63,7 +63,7 @@ class _FaceState extends State<Face> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            Image.asset('assets/images/Checklist Background Removed.png'),
+            Image.asset('assets/Checklist Background Removed.png'),
             const SizedBox(height: 20),
             if (!isUserRegistered)
               CardButton(
