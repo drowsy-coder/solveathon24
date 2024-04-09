@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:solveathon/screens/post_list_view.dart';
 import 'package:solveathon/screens/test.dart';
+import 'package:solveathon/widgets/drawer/info_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      // drawer: const UserProfileDrawer(),
+      drawer: const UserProfileDrawer(),
       body: Stack(
         children: [
           Positioned.fill(

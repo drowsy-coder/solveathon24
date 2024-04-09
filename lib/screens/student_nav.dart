@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solveathon/screens/dhobi.dart';
 import 'package:solveathon/screens/home_screen.dart';
+import 'package:solveathon/screens/pdf_chat.dart';
 import 'package:solveathon/screens/test.dart';
 import 'package:solveathon/screens/complaints.dart';
 import 'package:solveathon/screens/food_park.dart';
@@ -18,7 +19,7 @@ class _StudentNavState extends State<StudentNav> {
   static final List<Widget> _widgetOptions = [
     HomeScreen(),
     const ClothCounterPage(),
-    const ComplaintFormScreen(),
+    ChatBotScreen(),
     const FoodOrderingScreen()
   ];
 
