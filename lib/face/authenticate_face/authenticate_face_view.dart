@@ -21,7 +21,7 @@ import 'package:solveathon/models/user_model.dart';
 import 'package:solveathon/theme.dart';
 
 class AuthenticateFaceView extends StatefulWidget {
-  const AuthenticateFaceView({Key? key}) : super(key: key);
+  const AuthenticateFaceView({super.key});
 
   @override
   State<AuthenticateFaceView> createState() => _AuthenticateFaceViewState();
@@ -49,13 +49,13 @@ class _AuthenticateFaceViewState extends State<AuthenticateFaceView> {
   int trialNumber = 1;
 
   Future<void> checkLocationAndMarkAttendance() async {
-    const double targetLatitude = 21.175025003769775;
-    const double targetLongitude = 81.6532263999334;
-    const double threshold = 50.0; // Threshold in meters
+    const double targetLatitude = 21.175025;
+    const double targetLongitude = 81.65322;
+    const double threshold = 100.0; // Threshold in meters
 
     try {
       final Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+          desiredAccuracy: LocationAccuracy.medium);
       // Print the current latitude and longitude
       print("Current Latitude: ${position.latitude}");
       print("Current Longitude: ${position.longitude}");
@@ -65,10 +65,11 @@ class _AuthenticateFaceViewState extends State<AuthenticateFaceView> {
 
       if (distance <= threshold) {
         final String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
+        final String email = FirebaseAuth.instance.currentUser?.email ?? "";
         if (userId.isNotEmpty) {
           final DateTime now = DateTime.now();
           await FirebaseFirestore.instance.collection('attendance').add({
-            'uid': userId,
+            'email': email,
             'timestamp': now,
           });
           CustomSnackBar.successSnackBar("Attendance marked successfully!");
