@@ -47,6 +47,7 @@ dependencies:
   flutter_face_api: ^6.1.1
   image_picker: ^1.0.7
   intl: ^0.19.0
+  dropdown_textfield: ^1.0.8
 
 dev_dependencies:
   flutter_test:
