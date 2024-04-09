@@ -70,6 +70,7 @@ class _PostsListViewState extends State<PostsListView> {
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
                   elevation: 5,
+                  color: Color(0xff282828),
                   margin: const EdgeInsets.all(15),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -122,14 +123,17 @@ class _PostsListViewState extends State<PostsListView> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        data['imageUrl'] != null
+                        data['url'] != null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.network(
-                                  data['imageUrl'],
+                                  data['url'],
                                   fit: BoxFit.cover,
                                   width: double.infinity,
                                   height: 200,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return SizedBox.shrink();
+                                  },
                                 ),
                               )
                             : const SizedBox.shrink(),
