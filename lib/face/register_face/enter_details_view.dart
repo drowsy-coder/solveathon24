@@ -39,10 +39,10 @@ class _EnterDetailsViewState extends State<EnterDetailsView> {
 
       try {
         final DocumentSnapshot userDoc =
-            await _firestore.collection("users").doc(userId).get();
+            await _firestore.collection("userData").doc(userId).get();
 
         if (userDoc.exists) {
-          final String userName = userDoc['name'];
+          final String userName = userDoc['user'];
           setState(() {
             _nameController.text = userName;
           });
