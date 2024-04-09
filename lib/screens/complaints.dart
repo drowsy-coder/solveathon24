@@ -58,11 +58,22 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
       return;
     }
 
-    await db.collection('Complaints').add({
+// Create a reference to a document
+    // final DocumentReference ref = db
+    //     .collection('Complaints_saumya')
+    //     .doc('22BCE1293${_CategoryController.text.trim()}');
+    // final DocumentSnapshot doc = await ref.get();
+
+    final DocumentReference ref =
+        db.collection('Complaints').doc('22BCE1293_$category');
+    Map<String, dynamic> data = {
+      "Registration": "22BCE1293",
+      "Room": "115",
       "Category": category,
-      "Description": description,
+      "description": description,
       "Status": 1,
-    });
+    };
+    await ref.set(data);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Complaint submitted successfully')),
@@ -83,6 +94,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
         ),
         const SizedBox(height: 20),
         DropDownTextField(
+          controller: _categoryController,
           clearOption: false,
           textFieldDecoration: InputDecoration(
             labelText: 'Category',
