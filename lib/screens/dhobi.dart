@@ -24,36 +24,43 @@ class _ClothCounterPageState extends State<ClothCounterPage> {
     ClothItem(name: 'Jeans', iconPath: 'assets/1176990.png'),
   ];
 
+  int year = DateTime.now().year;
+  int month = DateTime.now().month;
+  int day = DateTime.now().day;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text('Laundry Day'),
+        backgroundColor: Colors.transparent,
       ),
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.black, Colors.grey[900]!],
-                ),
-              ),
-            ),
-          ),
+          // Positioned.fill(
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       gradient: LinearGradient(
+          //         begin: Alignment.topCenter,
+          //         end: Alignment.bottomCenter,
+          //         colors: [Colors.black, Colors.grey[900]!],
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Column(
             children: [
-              const Card(
-                margin: EdgeInsets.all(8.0),
+              Card(
+                margin: const EdgeInsets.all(12.0),
+                color: const Color(0xff282828),
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 20.0, horizontal: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      const Row(
                         children: [
                           Icon(Icons.meeting_room, color: Colors.blueAccent),
                           SizedBox(width: 10),
@@ -66,15 +73,16 @@ class _ClothCounterPageState extends State<ClothCounterPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       // Date Row
                       Row(
                         children: [
-                          Icon(Icons.calendar_today, color: Colors.greenAccent),
-                          SizedBox(width: 10),
+                          const Icon(Icons.calendar_today,
+                              color: Colors.greenAccent),
+                          const SizedBox(width: 10),
                           Text(
-                            'Chhota Dhobi Date: 24/09/2021',
-                            style: TextStyle(
+                            'Chhota Dhobi Date: $day/$month/$year',
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -91,8 +99,9 @@ class _ClothCounterPageState extends State<ClothCounterPage> {
                   itemBuilder: (context, index) {
                     final item = clothItems[index];
                     return Card(
+                      color: Color(0xff282828),
                       margin: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 8.0),
+                          vertical: 4.0, horizontal: 13.0),
                       child: ListTile(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
@@ -117,7 +126,7 @@ class _ClothCounterPageState extends State<ClothCounterPage> {
                                     fontSize: 18, color: Colors.white)),
                             IconButton(
                               icon: const Icon(Icons.add_circle_outline,
-                                  color: Colors.greenAccent),
+                                  color: Color(0xffa688fa)),
                               onPressed: () => setState(() => item.count++),
                             ),
                           ],
@@ -131,7 +140,7 @@ class _ClothCounterPageState extends State<ClothCounterPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Color(0xffa688fa),
                     minimumSize: const Size.fromHeight(50),
                   ),
                   onPressed: () {
