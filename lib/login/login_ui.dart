@@ -27,18 +27,18 @@ class LoginPageUI extends StatelessWidget {
 
     final List<CarouselItem> carouselItems = [
       CarouselItem(
-        imagePath: 'assets/laundry_icon.png',
+        imagePath: 'assets/washing-machine-svgrepo-com.png',
         title: 'Chhota Dhobi',
         description: 'Manage your laundry schedule with ease and convenience.',
       ),
       CarouselItem(
-        imagePath: 'assets/complaint_icon.png',
+        imagePath: 'assets/hostel-svgrepo-com.png',
         title: 'Hostel Complaint',
         description:
             'Raise any maintenance issues quickly and get them resolved.',
       ),
       CarouselItem(
-        imagePath: 'assets/mess_icon.png',
+        imagePath: 'assets/food-svgrepo-com.png',
         title: 'Mess Management',
         description:
             'Order food from the mess and manage your meal plans effortlessly.',
