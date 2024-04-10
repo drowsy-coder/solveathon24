@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter/widgets.dart';
+
 
 class IllScreen extends StatefulWidget {
   const IllScreen({super.key});
@@ -58,9 +60,11 @@ class _IllScreenState extends State<IllScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     int year = DateTime.now().year;
     int month = DateTime.now().month;
     int day = DateTime.now().day;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Illness'),
@@ -72,6 +76,7 @@ class _IllScreenState extends State<IllScreen> {
             isSent = checkSent();
           });
         },
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -191,6 +196,7 @@ class _IllScreenState extends State<IllScreen> {
               },
             ),
           ],
+
         ),
       ),
     );
