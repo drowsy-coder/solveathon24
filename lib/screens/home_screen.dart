@@ -35,69 +35,62 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       drawer: const UserProfileDrawer(),
-      body: Stack(
+      body: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Positioned.fill(
-          //   child: Container(
-          //     decoration: BoxDecoration(
-          //       gradient: LinearGradient(
-          //         begin: Alignment.topCenter,
-          //         end: Alignment.bottomCenter,
-          //         colors: [Colors.black, Colors.grey[900]!],
+          SizedBox(height: 10),
+          Center(
+            child: Text(
+              "Warden Announcments",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   child: Card(
+          //     color: Color(0xff282828),
+          //     elevation: 10,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(15),
+          //     ),
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(20),
+          //       child: Row(
+          //         children: [
+          //           Image.asset(
+          //             'assets/vit-logo-only.png',
+          //             height: 100,
+          //             width: 100,
+          //           ),
+          //           const SizedBox(width: 20),
+          //           const Column(
+          //             crossAxisAlignment: CrossAxisAlignment.start,
+          //             children: [
+          //               Text(
+          //                 'H-TOP',
+          //                 style: TextStyle(
+          //                   fontSize: 24,
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //               SizedBox(height: 10),
+          //               Text(
+          //                 'For all Hostel needs!',
+          //                 style: TextStyle(
+          //                   fontSize: 16,
+          //                 ),
+          //               ),
+          //             ],
+          //           ),
+          //         ],
           //       ),
           //     ),
           //   ),
           // ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Card(
-                  color: Color(0xff282828),
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/vit-logo-only.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        const SizedBox(width: 20),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'H-TOP',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'For all Hostel needs!',
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const Expanded(
-                child: PostsListView(),
-              ),
-            ],
+          const Expanded(
+            child: PostsListView(),
           ),
         ],
       ),
