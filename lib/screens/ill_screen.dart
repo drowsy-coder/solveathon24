@@ -40,7 +40,7 @@ void illData() async {
       .set({
     'isIll': 0,
     'useremail': currentUser.email,
-    'data': date, 
+    'data': date,
   });
 }
 
@@ -52,7 +52,6 @@ class _IllScreenState extends State<IllScreen> {
     setState(() {
       isSent = checkSent();
     });
-    // isSent = checkSent();
   }
 
   @override
@@ -72,10 +71,9 @@ class _IllScreenState extends State<IllScreen> {
           future: isSent,
           builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator(); // Show a loading spinner while waiting
+              return CircularProgressIndicator();
             } else if (snapshot.hasError) {
-              return Text(
-                  'Error: ${snapshot.error}'); // Show error message if something went wrong
+              return Text('Error: ${snapshot.error}');
             } else {
               return SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -85,11 +83,9 @@ class _IllScreenState extends State<IllScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (snapshot.data! ==
-                            -1) // If isSent is false, show the button
+                        if (snapshot.data! == -1)
                           ElevatedButton(
                             onPressed: () {
-                              // Handle button press
                               illData();
                               setState(() {
                                 isSent = checkSent();
@@ -97,8 +93,7 @@ class _IllScreenState extends State<IllScreen> {
                             },
                             child: Text('Button'),
                           ),
-                        if (snapshot.data ==
-                            0) // If isSent is true, show the text
+                        if (snapshot.data == 0)
                           Text('Your illness is under reveiw.'),
                         if (snapshot.data == 1) Text('You are now illness.'),
                       ],
