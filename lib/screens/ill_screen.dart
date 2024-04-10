@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
 
-
 class IllScreen extends StatefulWidget {
   const IllScreen({super.key});
 
@@ -16,7 +15,7 @@ Future<int> checkSent() async {
   final currentUser = FirebaseAuth.instance.currentUser;
   final docSnap = await FirebaseFirestore.instance
       .collection('iamill')
-      .doc(currentUser!.uid)
+      .doc(currentUser!.email)
       .get();
   if (docSnap.exists && docSnap['isIll'] == 0) {
     return 0;
@@ -39,7 +38,7 @@ void illData() async {
   String date = '$day-$month-$year';
   await FirebaseFirestore.instance
       .collection('iamill')
-      .doc(currentUser!.uid)
+      .doc(currentUser!.email)
       .set({
     'isIll': 0,
     'useremail': currentUser.email,
@@ -60,7 +59,6 @@ class _IllScreenState extends State<IllScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     int year = DateTime.now().year;
     int month = DateTime.now().month;
     int day = DateTime.now().day;
@@ -76,7 +74,6 @@ class _IllScreenState extends State<IllScreen> {
             isSent = checkSent();
           });
         },
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -149,16 +146,23 @@ class _IllScreenState extends State<IllScreen> {
                           )
                         : snapshot.data == 0
                             ? // If isSent is true, show the text
-                            const Align(
+                            Align(
                                 alignment: Alignment.center,
-                                child: Card(
-                                  color: Color(0xff282828),
-                                  margin: EdgeInsets.all(14),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child:
-                                        Text('Your Situation is under review.'),
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      'assets/danger-svgrepo-com.png',
+                                    ),
+                                    const Card(
+                                      color: Color(0xff282828),
+                                      margin: EdgeInsets.all(14),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Text(
+                                            'Your Situation is under review.'),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               )
                             : Align(
@@ -196,7 +200,6 @@ class _IllScreenState extends State<IllScreen> {
               },
             ),
           ],
-
         ),
       ),
     );
