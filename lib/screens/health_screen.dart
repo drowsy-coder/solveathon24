@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HealthCentreScreen extends StatefulWidget {
   const HealthCentreScreen({super.key});
@@ -10,23 +11,40 @@ class HealthCentreScreen extends StatefulWidget {
 }
 
 class _HealthCentreScreenState extends State<HealthCentreScreen> {
-  Future<List> fetchdocs() async {
+  Future<List> fetchUserRegNumAndDocs() async {
     List userMeds = [];
-    final docs = await FirebaseFirestore.instance.collection('doctor').get();
-    for (var doc in docs.docs) {
-      if (doc['registrationId'] == '22bce1182') {
-        print(doc.data());
-        userMeds.add(doc.data());
+    final currentUser = FirebaseAuth.instance.currentUser;
+
+    if (currentUser != null) {
+      final userEmail = currentUser.email;
+      final userData = await FirebaseFirestore.instance
+          .collection('userData')
+          .where('useremail', isEqualTo: userEmail)
+          .limit(1)
+          .get();
+
+      if (userData.docs.isNotEmpty) {
+        final userRegNum = userData.docs.first.data()['regNum'];
+
+        final docs = await FirebaseFirestore.instance
+            .collection('doctor')
+            .where('registrationId', isEqualTo: userRegNum)
+            .get();
+
+        for (var doc in docs.docs) {
+          userMeds.add(doc.data());
+        }
       }
     }
     return userMeds;
   }
 
-  Future<List>? userMedsfuture;
+  Future<List>? userMedsFuture;
+
   @override
   void initState() {
-    userMedsfuture = fetchdocs();
     super.initState();
+    userMedsFuture = fetchUserRegNumAndDocs();
   }
 
   @override
@@ -37,7 +55,7 @@ class _HealthCentreScreenState extends State<HealthCentreScreen> {
       ),
       body: Center(
         child: FutureBuilder<List>(
-          future: userMedsfuture,
+          future: userMedsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
@@ -54,7 +72,6 @@ class _HealthCentreScreenState extends State<HealthCentreScreen> {
                 return Container(
                   margin: const EdgeInsets.all(10),
                   child: Card(
-                    color: Colors.grey[900]!,
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),

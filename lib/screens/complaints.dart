@@ -9,28 +9,15 @@ class ComplaintFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // decoration: BoxDecoration(
-      //   gradient: LinearGradient(
-      //     begin: Alignment.topCenter,
-      //     end: Alignment.bottomCenter,
-      //     colors: [Colors.black, Colors.grey[900]!],
-      //   ),
-      // ),
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        // backgroundColor: Colors.grey[900],
-        appBar: AppBar(
-          title: Center(
-              child: const Text(
-            'Add Complaint',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          )),
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-        ),
-        body: const ComplaintsForm(),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      // backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        title: Text('Add Complaint'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      body: const ComplaintsForm(),
     );
   }
 }
@@ -160,7 +147,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
         Padding(
           padding: const EdgeInsets.all(16),
           child: ElevatedButton(
-            onPressed: (){
+            onPressed: () {
               submitComplaint();
               FocusScope.of(context).unfocus();
             },
