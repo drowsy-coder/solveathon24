@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:solveathon/login/login_method.dart';
 import 'package:solveathon/login/login_ui.dart';
 import 'package:solveathon/screens/health_screen.dart';
+import 'package:solveathon/screens/ill_screen.dart';
 import 'package:solveathon/screens/pdf_chat.dart';
 import 'package:solveathon/widgets/drawer/header.dart';
 
@@ -76,6 +77,14 @@ class _UserProfileDrawerState extends State<UserProfileDrawer> {
                               builder: (context) => const HealthCentreScreen()),
                         );
                       }),
+                      _buildOptionTile(Icons.medication_outlined, 'I AM ILL',
+                          () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const IllScreen()),
+                        );
+                      }),
                       _buildOptionTile(
                           Icons.chat_bubble_outline, 'Regulations ChatBOT',
                           () async {
@@ -85,14 +94,6 @@ class _UserProfileDrawerState extends State<UserProfileDrawer> {
                               builder: (context) => const ChatBotScreen()),
                         );
                       }),
-                      // _buildOptionTile(Icons.leaderboard, 'Leaderboard',
-                      //     () async {
-                      //   // Navigator.push(
-                      //   //   context,
-                      //   //   MaterialPageRoute(
-                      //   //       builder: (context) => const LeaderboardScreen()),
-                      //   // );
-                      // }),
                       _buildOptionTile(Icons.exit_to_app, 'Logout', () async {
                         await FirebaseAuth.instance.signOut();
                         Navigator.pushReplacement(
