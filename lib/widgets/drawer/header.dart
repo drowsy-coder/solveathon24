@@ -53,12 +53,16 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
         }
 
         final userData = snapshot.data!;
-        final String avatarImage = userData['userpfp'] ?? 'assets/5024509.png';
+        print(
+            "thisssssssssssssssssssssssssssssssssssssss" + userData['userpfp']);
+        final String avatarImage = userData['userpfp'] ??
+            'https://lh3.googleusercontent.com/a/ACg8ocK_ETy3mYoXUB5oH_jrHCXd6OyNX6vJPTd2hY_y87dJ4xLvwBk=s96-c"';
         final String userName = userData['user'] ?? 'N/A';
         final String regNo = userData['regNum'] ?? 'N/A';
 
         return Container(
-          padding: const EdgeInsets.only(top: 48.0, bottom: 16.0, left: 16.0, right: 16.0),
+          padding: const EdgeInsets.only(
+              top: 48.0, bottom: 16.0, left: 16.0, right: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -72,7 +76,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
                 animatedTexts: [
                   TypewriterAnimatedText(
                     userName,
-                    textStyle:  TextStyle(
+                    textStyle: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -96,18 +100,19 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
                 value: regNo,
                 iconColor: Colors.amber.shade400,
               ),
-  InfoRow(
-            icon: Icons.meeting_room,
-            label: 'Room Number',
-            value: 'A-519',
-            iconColor: Colors.lightGreenAccent.shade400,
-          ),
-          InfoRow(
-            icon: Icons.restaurant,
-            label: 'Mess',
-            value: 'Veg - CRCL',
-            iconColor: Colors.blue.shade400,
-          ),              const SizedBox(height: 10),
+              InfoRow(
+                icon: Icons.meeting_room,
+                label: 'Room Number',
+                value: 'A-519',
+                iconColor: Colors.lightGreenAccent.shade400,
+              ),
+              InfoRow(
+                icon: Icons.restaurant,
+                label: 'Mess',
+                value: 'Veg - CRCL',
+                iconColor: Colors.blue.shade400,
+              ),
+              const SizedBox(height: 10),
               const Divider(color: Colors.white54, thickness: 1.0),
             ],
           ),
