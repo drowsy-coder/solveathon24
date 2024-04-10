@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
@@ -41,6 +42,7 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
   }
 
   void submitComplaint() async {
+    final user = FirebaseAuth.instance.currentUser;
     final FirebaseFirestore db = FirebaseFirestore.instance;
     final String category = _categoryController.dropDownValue?.value ?? '';
     final String description = _descriptionController.text.trim();
@@ -55,11 +57,15 @@ class _ComplaintsFormState extends State<ComplaintsForm> {
     int year = DateTime.now().year;
     int month = DateTime.now().month;
     int day = DateTime.now().day;
-
+    final DocumentReference ref1 =
+        await db.collection('userData').doc(user!.uid);
+    final DocumentSnapshot snap = await ref1.get();
+    final String regNum = snap['regNum'];
     final DocumentReference ref =
-        db.collection('Complaints').doc('22BCE1293_$category');
+        db.collection('Complaints').doc('${regNum}_$category');
+
     Map<String, dynamic> data = {
-      "Registration": "22BCE1293",
+      "Registration": regNum,
       "Room": "115",
       "Category": category,
       "description": description,
